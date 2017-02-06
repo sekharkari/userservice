@@ -18,8 +18,11 @@ node {
    stash includes: '**/target/*.jar', name: 'app' 
    
    stage 'Unit tests'
-   sh "${mvnHome}/bin/mvn test" 
+   //sh "${mvnHome}/bin/mvn test" 
+   junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
    step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+   publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'HTML Report'])
+
    
    stage 'Dev deployment - Cloudfoundry'
    //CF push
