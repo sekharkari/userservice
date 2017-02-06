@@ -13,7 +13,7 @@ node {
    // Mark the code build 'stage'....
    stage 'Build'
    // Run the maven build
-   sh "${mvnHome}/bin/mvn -DskipTests"
+   sh "${mvnHome}/bin/mvn clean install -DskipTests"
    step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
    stash includes: '**/target/*.jar', name: 'app' 
    
