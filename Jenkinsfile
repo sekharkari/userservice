@@ -11,8 +11,8 @@ node {
    def mvnHome = tool 'M3'
 
    // Mark the code build 'stage'....
-   stage 'Build'
-   // Run the maven build
+   stage 'Compile'
+   // Run the maven compile
    sh "${mvnHome}/bin/mvn clean build"
    
    
