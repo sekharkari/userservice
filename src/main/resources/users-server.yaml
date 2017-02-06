@@ -1,0 +1,25 @@
+# Spring properties
+spring:
+  application:
+     name: users-service
+
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${vcap.services.cfeurekaserver.credentials.uri:http://localhost:8080/eureka/}
+  instance:
+    hostname: ${vcap.application.uris[0]:localhost}
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}    
+
+# HTTP Server
+server:
+  port: ${PORT:8082}   # HTTP (Tomcat) port
+
+---
+spring:
+  profiles: cloud
+eureka:
+  instance:
+    nonSecurePort: 80
