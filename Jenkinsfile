@@ -23,10 +23,16 @@ node {
    step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'HTML Report'])
 
-   
+ 
    stage 'Dev deployment - Cloudfoundry'
+   def userInput = input(id: 'userInput', message: 'Environement to promote. type N if no deployment?', parameters: [
+ 		[$class: 'TextParameterDefinition', defaultValue: 'dev', description: 'Environment', name: 'env']
+	])
+	if(userInput.equals("dev") {
+	
    //CF push
    	sh 'cf login -a https://api.ng.bluemix.net -o vkari -u sekharkari@gmail.com -p Vaishnavi1 -s dev'
     sh 'cf push vkari-userservice -p target/user-service-0.0.1-SNAPSHOT.jar  -n cfdemo-us -m 256M'
+    }
    
 }
