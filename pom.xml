@@ -83,10 +83,24 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
 				<version>2.7</version>
+				<configuration>
+					<check>
+						<!--  --><haltOnFailure>true</haltOnFailure>--> <!-- optional -->
+						<!-- Per-class thresholds -->
+						<lineRate>50</lineRate> 
+						<branchRate>50</branchRate>
+						
+						<!-- Project-wide thresholds -->
+						<totalLineRate>50</totalLineRate>
+						<totalBranchRate>50</totalBranchRate>
+					</check>
+				</configuration>
 				<executions>
 					<execution>
+					<!-- invoke as mvn cobertura:check, or test -->
+					<phase>test</phase>
 						<goals>
-							<goal>instrument</goal>
+							<goal>check</goal>
 						</goals>
 					</execution>
 				</executions>

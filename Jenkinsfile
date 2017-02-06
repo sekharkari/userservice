@@ -17,7 +17,7 @@ node {
    
    
    stage 'Unit tests'
-   sh "${mvnHome}/bin/mvn test cobertura:cobertura" 
+   sh "${mvnHome}/bin/mvn test" 
    junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
    step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/cobertura', reportFiles: 'index.html', reportName: 'HTML Report'])
