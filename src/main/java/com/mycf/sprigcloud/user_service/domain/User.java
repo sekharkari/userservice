@@ -2,7 +2,6 @@ package com.mycf.sprigcloud.user_service.domain;
 
 public class User {
 	private String name;
-	private String contactNo;
 	private int userId;
 
 	public User(String name, int userId) {
@@ -17,14 +16,6 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getContactNo() {
-		return contactNo;
-	}
-
-	public void setContactNo(String contactNo) {
-		this.contactNo = contactNo;
 	}
 
 	public int getUserId() {

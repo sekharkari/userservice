@@ -11,15 +11,17 @@ node {
    def mvnHome = tool 'M3'
 
    // Mark the code build 'stage'....
-   stage 'Compile'
-   // Run the maven compile
+   stage 'Build'
+   // Run the maven clean compile
    sh "${mvnHome}/bin/mvn clean compile"
    
    
-   stage 'Unit tests'
+   stage 'Tests'
    sh "${mvnHome}/bin/mvn test" 
-   junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
    step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+   
+   stage 'Code Coverage'
+   sh "${mvnHome}/bin/mvn cobertura:cobertura cobertura:check" 
    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/cobertura', reportFiles: 'index.html', reportName: 'HTML Report'])
    
    // Mark the code build 'stage'....
