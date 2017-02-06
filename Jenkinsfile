@@ -13,19 +13,19 @@ node {
    // Mark the code build 'stage'....
    stage 'Compile'
    // Run the maven compile
-   sh "${mvnHome}/bin/mvn clean build"
+   sh "${mvnHome}/bin/mvn clean compile"
    
    
    stage 'Unit tests'
-   sh "${mvnHome}/bin/mvn cobertura:cobertura" 
+   sh "${mvnHome}/bin/mvn test cobertura:cobertura" 
    junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
    step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
-   publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'HTML Report'])
+   publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/cobertura', reportFiles: 'index.html', reportName: 'HTML Report'])
    
    // Mark the code build 'stage'....
    stage 'Package'
    // Run the maven build
-   sh "${mvnHome}/bin/mvn install -DskipTests"
+   sh "${mvnHome}/bin/mvn package"
    step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
    stash includes: '**/target/*.jar', name: 'app' 
  
