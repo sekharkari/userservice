@@ -30,11 +30,14 @@ node {
    ])
 	
 	if(userInput.equals("dev")) {
-	
+	echo 'approved'
    	//CF push
    	sh 'cf login -a https://api.ng.bluemix.net -o vkari -u sekharkari@gmail.com -p Vaishnavi1 -s dev'
     sh 'cf push vkari-userservice -p target/user-service-0.0.1-SNAPSHOT.jar  -n cfdemo-us -m 256M'
     
+    }
+    else {
+    	echo 'not approved'	
     }
    
 }
