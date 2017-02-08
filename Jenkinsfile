@@ -23,6 +23,13 @@ node {
    junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/cobertura', reportFiles: 'index.html', reportName: 'Code coverage report'])
    
+   stage('SonarQube analysis') {
+    // requires SonarQube Scanner 2.8+
+    def scannerHome = tool 'SonarQube Scanner 2.8';
+    withSonarQubeEnv('My SonarQube Server') {
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
+  }
  
    stage 'Deployment - Cloudfoundry'
    def userInput = input(id: 'userInput', message: 'Environement to promote. type N if no deployment?', parameters: [
