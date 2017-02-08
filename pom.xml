@@ -105,11 +105,11 @@
 						<!-- <haltOnFailure>false</haltOnFailure> -->
 						<!-- Optional, the default haltOnFailure is true. Use this flag only when u wish not to halt -->
 						<!-- Per-class thresholds -->
-						<lineRate>90</lineRate>
-						<branchRate>90</branchRate>
+						<lineRate>50</lineRate>
+						<branchRate>50</branchRate>
 						<!-- Project-wide thresholds -->
-						<totalLineRate>90</totalLineRate>
-						<totalBranchRate>90</totalBranchRate>
+						<totalLineRate>50</totalLineRate>
+						<totalBranchRate>50</totalBranchRate>
 					</check>
 					<!-- no need to instrument the Testcases itself, only instrument other java classes -->
 					
