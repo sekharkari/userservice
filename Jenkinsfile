@@ -19,7 +19,7 @@ node {
    
  
    stage 'Junits & Coverage'
-   sh "${mvnHome}/bin/mvn test cobertura:cobertura -Dcobertura.report.format=html cobertura:check cobertura:clean" 
+   sh "${mvnHome}/bin/mvn test cobertura:cobertura cobertura:check cobertura:clean" 
    junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/cobertura', reportFiles: 'index.html', reportName: 'Code coverage report'])
    
