@@ -31,7 +31,7 @@ node {
     }
   }
  
-  stage 'Deployment - Cloudfoundry',concurrency=1
+  stage 'Deployment - Cloudfoundry'
    	//CF push
     try {
 	input message: 'Do you want to push this build to Cloud?', ok: 'Yes'
