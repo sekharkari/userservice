@@ -30,6 +30,7 @@ public class UsersControllerTest {
 		assertNotNull(response.getBody());
 		assertEquals(1, response.getBody().getUserId());
 		assertNotNull(response.getBody().getName());
+		assertNotNull(response.getBody().getEmailAddress());
 	}
 
 	@Test
