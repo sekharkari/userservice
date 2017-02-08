@@ -25,7 +25,7 @@ public class UserTest {
 		u.setEmailAddress(emailAddress);
 		assertEquals("name",u.getName());
 		assertEquals(1,u.getUserId());
-		assertEquals("name@gmail.com",u.getEmailAddress());
+		assertEquals(emailAddress,u.getEmailAddress());
 	}
 
 }
