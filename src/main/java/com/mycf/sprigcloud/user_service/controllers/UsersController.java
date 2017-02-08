@@ -19,9 +19,9 @@ public class UsersController {
 	public ResponseEntity<User> byNumber(@PathVariable("userid") int userId) {
 		switch (userId) {
 		case 1:
-			return new ResponseEntity<User>(new User("Bob Dylan", userId), HttpStatus.OK);
+			return new ResponseEntity<User>(new User("Bob Dylan", userId,"bob.dylan@gmail.com"), HttpStatus.OK);
 		case 2:
-			return new ResponseEntity<User>(new User("Neil Young", userId), HttpStatus.OK);
+			return new ResponseEntity<User>(new User("Neil Young", userId,"neil.young@email.com"), HttpStatus.OK);
 		default:
 			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 		}
