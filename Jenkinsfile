@@ -12,8 +12,10 @@ node {
 
    // Mark the code build 'stage'....
    stage 'Build'
-   // Run the maven clean compile
-   sh "${mvnHome}/bin/mvn clean compile"
+   // Run the maven clean install -DskipTests=true
+   sh "${mvnHome}/bin/mvn clean install -DskipTests=true"
+   step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
+   stash includes: '**/target/*.jar', name: 'app' 
    
  
    stage 'Junits & Coverage'
@@ -21,14 +23,8 @@ node {
    junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/cobertura', reportFiles: 'index.html', reportName: 'Code coverage report'])
    
-   // Mark the code build 'stage'....
-   stage 'Package'
-   // Run the maven build
-   sh "${mvnHome}/bin/mvn package"
-   step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
-   stash includes: '**/target/*.jar', name: 'app' 
  
-   stage 'Dev deployment - Cloudfoundry'
+   stage 'Deployment - Cloudfoundry'
    def userInput = input(id: 'userInput', message: 'Environement to promote. type N if no deployment?', parameters: [
  		[$class: 'TextParameterDefinition', defaultValue: 'dev', description: 'Environment', name: 'env']
    ])
