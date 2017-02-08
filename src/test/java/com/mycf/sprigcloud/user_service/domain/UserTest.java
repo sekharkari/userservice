@@ -23,8 +23,8 @@ public class UserTest {
 		u.setName(name);
 		u.setUserId(userId);
 		u.setEmailAddress(emailAddress);
-		assertEquals("name",u.getName());
-		assertEquals(1,u.getUserId());
+		assertEquals(name,u.getName());
+		assertEquals(userId,u.getUserId());
 		assertEquals(emailAddress,u.getEmailAddress());
 	}
 

@@ -15,14 +15,11 @@ node {
    // Run the maven clean compile
    sh "${mvnHome}/bin/mvn clean compile"
    
-   
-   stage 'Tests'
-   sh "${mvnHome}/bin/mvn test" 
-   step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
-   
-   stage 'Code Coverage'
-   sh "${mvnHome}/bin/mvn cobertura:cobertura cobertura:check" 
-   publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/cobertura', reportFiles: 'index.html', reportName: 'HTML Report'])
+ 
+   stage 'Junits & Coverage'
+   sh "${mvnHome}/bin/mvn test cobertura:cobertura cobertura:check cobertura:clean" 
+   junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
+   publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target/site/cobertura', reportFiles: 'index.html', reportName: 'Code coverage report'])
    
    // Mark the code build 'stage'....
    stage 'Package'
