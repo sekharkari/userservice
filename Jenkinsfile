@@ -26,7 +26,7 @@ node {
     }
   }
  
-   stage 'Deployment - Cloudfoundry' concurrency: 1 {
+   stage 'Deployment - Cloudfoundry', concurrency: 1 {
    	//CF push
 	input message: 'Do you want to push this build to Dev cloud foundry instance ?', ok: 'Yes'
    	sh 'cf login -a https://api.ng.bluemix.net -o vkari -u sekharkari@gmail.com -p Vaishnavi1 -s dev'
