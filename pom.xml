@@ -100,33 +100,9 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
 				<version>2.7</version>
-				<configuration>
-					<check>
-						<!-- <haltOnFailure>false</haltOnFailure> -->
-						<!-- Optional, the default haltOnFailure is true. Use this flag only when u wish not to halt -->
-						<!-- Per-class thresholds -->
-						<lineRate>50</lineRate>
-						<branchRate>50</branchRate>
-						<!-- Project-wide thresholds -->
-						<totalLineRate>50</totalLineRate>
-						<totalBranchRate>50</totalBranchRate>
-					</check>
-					<!-- no need to instrument the Testcases itself, only instrument other java classes -->
-					
-				</configuration>
-			
-			<!-- 
-			<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
-							<goal>clean</goal>
-						</goals>
-					</execution>
-				</executions>
-				-->
+
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>
