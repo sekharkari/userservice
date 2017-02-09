@@ -31,6 +31,19 @@ public class UsersControllerTest {
 		assertEquals(1, response.getBody().getUserId());
 		assertNotNull(response.getBody().getName());
 		assertNotNull(response.getBody().getEmailAddress());
+		assertNotNull(response.getBody().getPhoneNumber());
+	}
+	
+	@Test
+	public void byNumber2() {
+		ResponseEntity<User> response = controller.byNumber(2);
+		assertNotNull(response);
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertNotNull(response.getBody());
+		assertEquals(2, response.getBody().getUserId());
+		assertNotNull(response.getBody().getName());
+		assertNotNull(response.getBody().getEmailAddress());
+		assertNotNull(response.getBody().getPhoneNumber());
 	}
 
 	@Test
