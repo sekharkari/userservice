@@ -101,11 +101,11 @@
 				<configuration>
 					<check>
 						<!-- Per-class thresholds -->
-						<lineRate>50</lineRate>
-						<branchRate>50</branchRate>
+						<lineRate>90</lineRate>
+						<branchRate>90</branchRate>
 						<!-- Project-wide thresholds -->
-						<totalLineRate>50</totalLineRate>
-						<totalBranchRate>50</totalBranchRate>
+						<totalLineRate>90</totalLineRate>
+						<totalBranchRate>90</totalBranchRate>
 					</check>
 				</configuration>
 			</plugin>
