@@ -41,4 +41,7 @@ node {
             echo 'No deployment, Build successful'
    }
    
+   stage 'Automation Tests on Dev'
+   build job: 'cfdemo-automation'
+   
 }
